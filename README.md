@@ -66,44 +66,31 @@ This project automates the process with an explainable baseline algorithm, then 
 
 This repo is intentionally split into two layers:
 
-- **`engine/`** - pure Python business logic  
+- **`engine/`** — pure Python business logic  
   _Team generation, constraints, fairness metrics, learning updates_
 
-- **`backend/`** - Django + API surface (planned)  
+- **`backend/`** — Django + API surface (planned)  
   _Auth, organisations, persistence, REST endpoints, admin UI_
 
 This keeps the optimisation logic reusable (CLI, web, batch jobs, future services).
 
 ---
 
-## Status
-In active development
+## Repository structure
 
-
+```text
 team-optimiser/
-├── engine/ # Pure optimisation engine (no Django imports)
-│ ├── models.py # Domain models (Player, Attributes, etc.)
-│ ├── optimiser.py # Team generation algorithms
-│ ├── metrics.py # Fairness metrics and reports
-│ └── learning.py # (planned) Elo + weight tuning
+├── engine/               # Pure optimisation engine (no Django imports)
+│   ├── models.py          # Domain models (Player, Attributes, etc.)
+│   ├── optimiser.py       # Team generation algorithms
+│   ├── metrics.py         # Fairness metrics and reports
+│   └── learning.py        # (planned) Elo + weight tuning
 │
-├── scripts/ # Local runners / helpers
-├── tests/ # Unit tests for engine
+├── scripts/              # Local runners / helpers
+├── tests/                # Unit tests for engine
 │
-├── deploy/ # (planned) deployment artefacts
-│ ├── ecs/
-│ └── k8s/
+├── deploy/               # (planned) deployment artefacts
+│   ├── ecs/
+│   └── k8s/
 │
 └── README.md
-
-
----
-
-## Quickstart (engine only)
-
-- This project currently focuses on the engine first. Django/API will be added once the core logic is stable.
-
-### 1: Create and activate a venv
-```bash
-python3 -m venv .venv
-source .venv/bin/activate
